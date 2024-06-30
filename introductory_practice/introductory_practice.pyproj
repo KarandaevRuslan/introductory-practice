@@ -24,6 +24,7 @@
   <ItemGroup>
     <Compile Include="introductory_practice.py" />
     <Compile Include="model.py" />
+    <Compile Include="presenter.py" />
     <Compile Include="view.py" />
   </ItemGroup>
   <ItemGroup>

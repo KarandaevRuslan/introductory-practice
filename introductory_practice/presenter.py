@@ -1,0 +1,91 @@
+class ImagePresenter:
+    """Presenter for image editor application"""
+    def __init__(self, model, view):
+        self.model = model
+        self.view = view
+        self.connect_signals()
+
+    def connect_signals(self):
+        """Binds commands with signals"""
+        self.view.loadImageBtn.clicked.connect(self.load_image)
+        self.view.captureImageBtn.clicked.connect(self.capture_image)
+        self.view.channelsGB.toggled.connect(self.apply_channel)
+        self.view.upSB.valueChanged.connect(self.add_margin)
+        self.view.rightSB.valueChanged.connect(self.add_margin)
+        self.view.bottomSB.valueChanged.connect(self.add_margin)
+        self.view.leftSB.valueChanged.connect(self.add_margin)
+        self.view.drawBtn.clicked.connect(self.draw_line)
+        self.view.saveImageBtn.clicked.connect(self.save_image)
+        self.view.linesLst.itemDoubleClicked.connect(self.remove_line)
+
+    def load_image(self):
+        """Loads image from your pc"""
+        file_path = self.view.select_image_file()
+        if file_path:
+            try:
+                self.model.load_image(file_path)
+                self.view.display_image(self.model.image)
+            except ValueError as e:
+                self.view.display_error(str(e))
+
+    def capture_image(self):
+        """Takes photo from your webcam (if it exists, of course)"""
+        try:
+            self.model.capture_image()
+            self.view.display_image(self.model.image)
+        except ValueError as e:
+            self.view.display_error(str(e))
+
+    def apply_channel(self):
+        """Applies channel to your photo"""
+        channel_id = self.view.get_channel_id()
+        try:
+            self.model.channel_id = channel_id
+            self.model.apply_channel(channel_id)
+            self.view.display_image(self.model.get_image())
+        except ValueError as e:
+            self.view.display_error(str(e))
+
+    def add_margin(self):
+        """Adds margin. Margin hides parts of lines below its"""
+        size = self.view.get_margin_size()
+        if size is not None:
+            try:
+                self.model.set_margin(*size)
+                self.redraw_all()
+                self.view.display_image(self.model.image)
+            except ValueError as e:
+                self.view.display_error(str(e))
+
+    def draw_line(self):
+        """Draws one green line. Can change its color if you'll decide to select new channel"""
+        params = self.view.get_line_params()
+        if params is not None:
+            try:
+                self.model.draw_line(*params)
+                self.view.add_line_to_list(*params)
+                self.model.redraw_all()
+                self.view.display_image(self.model.image)
+            except ValueError as e:
+                self.view.display_error(str(e))
+
+    def save_image(self):
+        """Saves image om your pc"""
+        file_path = self.view.save_image_file()
+        if file_path:
+            try:
+                self.model.save_image(file_path)
+            except ValueError as e:
+                self.view.display_error(str(e))
+
+    def remove_line(self):
+        """Removes line"""
+        row = self.view.remove_selected_line_from_list()
+        if row is not None:
+            try:
+                self.model.remove_line(row)
+                self.model.redraw_all()
+                self.view.display_image(self.model.image)
+            except ValueError as e:
+                self.view.display_error(str(e))
+
