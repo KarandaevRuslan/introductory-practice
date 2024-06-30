@@ -4,12 +4,7 @@ import cv2
 class ImageModel:
     """Features image"""
     def __init__(self):
-        self.__image = None
-        self.original_image = None
-        self.original_channel_image = None
-        self.__channel_id = 0
-        self.__margin = [0,0,0,0]
-        self.lines = []
+        self.set_default()
 
     def load_image(self, file_path):
         """Loads image by file path"""
@@ -68,7 +63,7 @@ class ImageModel:
         if self.original_image is None:
             raise ValueError("No image loaded")
         self.original_channel_image = cv2.copyMakeBorder(
-            self.original_channel_image, margin[0], margin[2], margin[3], margin[1], cv2.BORDER_CONSTANT, value=(0, 0, 0))
+            self.original_channel_image, self.__margin[0], self.__margin[2], self.__margin[3], self.__margin[1], cv2.BORDER_CONSTANT, value=(0, 0, 0))
 
     def draw_line(self, x1, y1, x2, y2, thickness):
         """Draws line on the original image and saves it to original_channel_image.
@@ -85,11 +80,12 @@ class ImageModel:
 
     def redraw_lines(self):
         """Draws lines again from lines list on original image and saves it to original_channel_image"""
-        if self.original_image is not None:
-            self.reset_original_channel_image()
-            for line in self.lines:
-                cv2.line(self.original_channel_image, 
-                         (line[0], line[1]), (line[2], line[3]), (0, 255, 0), line[4])
+        if self.original_image is None:
+            raise ValueError("No image loaded")
+        self.reset_original_channel_image()
+        for line in self.lines:
+            cv2.line(self.original_channel_image, 
+                        (line[0], line[1]), (line[2], line[3]), (0, 255, 0), line[4])  
 
     def save_image(self, file_path):
         """Saves image to the specified location"""
@@ -107,6 +103,15 @@ class ImageModel:
         self.redraw_lines()
         self.add_margin_to_image()
         self.apply_channel()
+        
+    def set_default(self):
+        """Returns everything to the way it was"""
+        self.__image = None
+        self.original_image = None
+        self.original_channel_image = None
+        self.__channel_id = 0
+        self.__margin = [0,0,0,0]
+        self.lines = []
 
     @property
     def image(self):

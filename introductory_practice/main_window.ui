@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Image editor</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>imageEditorIcon.png</normaloff>imageEditorIcon.png</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true"/>
   </property>
@@ -23,31 +27,18 @@
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <layout class="QFormLayout" name="formLayout">
-      <item row="0" column="1">
-       <widget class="QLabel" name="imageLbl">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(109, 109, 109)</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-        <property name="margin">
-         <number>0</number>
-        </property>
-        <property name="indent">
-         <number>-1</number>
-        </property>
-       </widget>
-      </item>
+      <property name="leftMargin">
+       <number>10</number>
+      </property>
+      <property name="topMargin">
+       <number>10</number>
+      </property>
+      <property name="rightMargin">
+       <number>10</number>
+      </property>
+      <property name="bottomMargin">
+       <number>10</number>
+      </property>
       <item row="0" column="0">
        <widget class="QTabWidget" name="tabWidget">
         <property name="sizePolicy">
@@ -57,7 +48,7 @@
          </sizepolicy>
         </property>
         <property name="currentIndex">
-         <number>2</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="channelsTab">
          <attribute name="title">
@@ -291,9 +282,65 @@
             </property>
             <layout class="QGridLayout" name="gridLayout_6">
              <item row="0" column="0">
-              <widget class="QListView" name="linesLst"/>
+              <widget class="QListWidget" name="linesLst">
+               <property name="font">
+                <font>
+                 <pointsize>7</pointsize>
+                </font>
+               </property>
+              </widget>
              </item>
             </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QScrollArea" name="scrollArea">
+        <property name="widgetResizable">
+         <bool>true</bool>
+        </property>
+        <widget class="QWidget" name="scrollAreaWidgetContents">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>721</width>
+           <height>625</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(109, 109, 109)</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_8">
+          <item row="0" column="0">
+           <widget class="QLabel" name="imageLbl">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="scaledContents">
+             <bool>false</bool>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="margin">
+             <number>0</number>
+            </property>
+            <property name="indent">
+             <number>-1</number>
+            </property>
            </widget>
           </item>
          </layout>
