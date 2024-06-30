@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>6104aa6b-6272-472c-98f2-6650d1b567a8</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>introductory_practice.py</StartupFile>
+    <StartupFile>__main__.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,13 +22,16 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="introductory_practice.py" />
+    <Compile Include="__main__.py" />
     <Compile Include="model.py" />
     <Compile Include="presenter.py" />
     <Compile Include="view.py" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="CondaEnv|CondaEnv|py310" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="main_window.ui" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

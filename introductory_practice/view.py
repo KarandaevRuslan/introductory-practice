@@ -56,7 +56,7 @@ class MainWindowView(QMainWindow):
 
     def add_line_to_list(self, line):
         """Adds line to linesLst with specified params: x1, y1, x2, y2, thickness"""
-        item = QListWidgetItem(f"Line: ( x1: {line[0]}, y1: {line[1]},
+        item = QListWidgetItem(f"Line: ( x1: {line[0]}, y1: {line[1]}, \
                                x2: {line[2]}, y2: {line[3]}, thickness: {line[4]})")
         self.linesLst.addItem(item)
 

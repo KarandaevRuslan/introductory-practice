@@ -7,16 +7,16 @@ class ImagePresenter:
 
     def connect_signals(self):
         """Binds commands with signals"""
-        self.view.loadImageBtn.clicked.connect(self.load_image)
-        self.view.captureImageBtn.clicked.connect(self.capture_image)
+        self.view.loadImageBtn.triggered.connect(self.load_image)
+        self.view.captureImageBtn.triggered.connect(self.capture_image)
+        self.view.saveImageBtn.triggered.connect(self.save_image)
         self.view.channelsGB.toggled.connect(self.apply_channel)
         self.view.upSB.valueChanged.connect(self.add_margin)
         self.view.rightSB.valueChanged.connect(self.add_margin)
         self.view.bottomSB.valueChanged.connect(self.add_margin)
         self.view.leftSB.valueChanged.connect(self.add_margin)
         self.view.drawBtn.clicked.connect(self.draw_line)
-        self.view.saveImageBtn.clicked.connect(self.save_image)
-        self.view.linesLst.itemDoubleClicked.connect(self.remove_line)
+        self.view.linesLst.doubleClicked.connect(self.remove_line)
 
     def load_image(self):
         """Loads image from your pc"""
