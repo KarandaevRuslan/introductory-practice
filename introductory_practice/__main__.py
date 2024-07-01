@@ -1,3 +1,4 @@
+"""Launch module"""
 import sys
 from PyQt5.QtWidgets import QApplication
 from model import ImageModel
@@ -5,6 +6,7 @@ from view import MainWindowView
 from presenter import ImagePresenter
 
 def main():
+    """Starts application"""
     app = QApplication(sys.argv)
     model = ImageModel()
     view = MainWindowView()
