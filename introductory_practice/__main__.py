@@ -1,5 +1,6 @@
 """Launch module"""
 import sys
+import os
 from PyQt5.QtWidgets import QApplication
 from model import ImageModel
 from view import MainWindowView
@@ -15,4 +16,5 @@ def main():
     sys.exit(app.exec_())
 
 if __name__ == "__main__":
+    os.chdir(sys.path[0])
     main()

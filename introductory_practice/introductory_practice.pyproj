@@ -12,6 +12,7 @@
     <Name>introductory_practice</Name>
     <RootNamespace>introductory_practice</RootNamespace>
     <InterpreterId>CondaEnv|CondaEnv|py310</InterpreterId>
+    <IsWindowsApplication>True</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
