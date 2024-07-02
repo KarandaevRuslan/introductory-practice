@@ -40,6 +40,7 @@ class ImagePresenter:
                 self.model.load_image(file_path)
                 self.view.display_image(self.model.image)
                 self.view.set_status(file_path)
+                self.ignore_warns = False
             except ValueError as _e:
                 self.view.display_error(str(_e))
 
@@ -52,6 +53,7 @@ class ImagePresenter:
             self.model.capture_image()
             self.view.display_image(self.model.image)
             self.view.set_status("Webcam snapshot")
+            self.ignore_warns = False
         except ValueError as _e:
             self.view.display_error(str(_e))
 
